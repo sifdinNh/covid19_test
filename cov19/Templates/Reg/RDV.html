@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% extends "../core/Base.html" %}
+{%load static%}
+{% load widget_tweaks %}
+{% block title %}
+    Welcome to Blog
+{% endblock %}
+{% block content %}
+
+
+
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{%static 'RDV/'%}images/icons/favicon.ico"/>
+
+	<link rel="stylesheet" type="text/css" href="{%static 'RDV/'%}fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="{%static 'RDV/'%}vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'RDV/'%}css/main.css">
+
+<!--===============================================================================================-->
+
+
+
+</head>
+<body>
+{% include "core/navbar.html" %}
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<span class="contact100-form-title">
+					Appontement
+				</span>
+
+                         {% if form.errors  %}
+                                <p>Please correct the following errors:</p>
+                                {% for field in form %}
+                                {% if field.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ field.label }}: {{ field.errors|striptags }}
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+
+					<span class="label-input100">Ramid </span>
+					{% render_field form.ramid class="input100" placeholder="Enter your Ramid code" %}
+					<span class="focus-input100"></span>
+				</div>
+
+
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Choose Center</span>
+					<div>
+						{% render_field form.choice_field class="selection-2"  %}
+
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100">
+					{% render_field form.is_cov19 class=" " id="checkdo" %}
+					<label for="checkdo" class="block text-gray-400 font-normal">Do u have/had Covid-19</label>
+				</div>
+				<div class="mb-2"> <span>Drope your image</span>
+					<div class="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor">
+						<div class="absolute">
+							<div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-gray-400 font-normal">Attach you files here</span> <span class="block text-gray-400 font-normal">or</span> <span class="block text-blue-400 font-normal">Browse files</span> </div>
+						</div>
+						{% render_field formImage.profile_image class="h-full w-full opacity-0"  %}
+
+					</div>
+
+				</div>
+
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+							<span>
+								Submit
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+	<script src="{%static 'RDV/'%}vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="{%static 'RDV/'%}vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+
+	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+	<script src="{%static 'RDV/'%}js/main.js"></script>
+
+
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+{% include "core/footer.html" %}
+{% endblock %}
+</body>
+</html>

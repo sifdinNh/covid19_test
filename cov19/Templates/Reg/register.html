@@ -1,0 +1,113 @@
+
+{% extends "../core/Base.html" %}
+{%load static%}
+{% load widget_tweaks %}
+{% block title %}
+    Register
+{% endblock %}
+{% block content %}
+{% include "core/navbar.html" %}
+<link rel="stylesheet" href="{%static 'register/'%}fonts/material-icon/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="{%static 'register/'%}vendor/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="{%static 'register/'%}css/style.css">
+
+<div class="main">
+ <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        {% csrf_token %}
+                         {% if userForm.errors  %}
+                                <p>Please correct the following errors:</p>
+                                {% for field in userForm %}
+                                {% if field.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ field.label }}: {{ field.errors|striptags }}
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name">First name</label>
+                                {% render_field userForm.first_name id="first_name" class="form-input" placeholder="first_name" %}
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last name</label>
+                                {% render_field userForm.last_name id="last_name" class="form-input" placeholder="last_name" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+
+                            <label for="email">adresse</label>
+                            {% render_field patientForm.address id="adresse" class="form-input" placeholder="addresse" %}
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone_number">Phone number</label>
+                                {% render_field patientForm.phone id="phone_number" class="form-input" placeholder="phone_number" %}
+                            </div>
+                            <div class="form-group">
+                                <label for="CID">CID</label>
+                                {% render_field patientForm.CID id="CID" class="form-input" placeholder="CID" %}
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+
+                            <label for="email">email</label>
+                            {% render_field userForm.email id="email" class="form-input" placeholder="Email" %}
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                {% render_field userForm.password id="password" class="form-input" placeholder="Password" %}
+                            </div>
+                            <div class="form-group">
+                                <label for="re_password">Repeat your password</label>
+                                {% render_field userForm.password2 id="re_password" class="form-input" placeholder="re_password" %}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                             <div class="form-group form-icon">
+                                <label for="birth_date">Birth date</label>
+                                 {% render_field patientForm.date_N id="birth_date" class="form-input" placeholder="YYYY-MM-DD" %}
+                            </div>
+                            <!--
+                            <div class="form-radio">
+                                <label for="gender">Gender</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="gender" value="male" id="male" checked="checked" />
+                                    <label for="male">Male</label>
+
+                                    <input type="radio" name="gender" value="female" id="female" />
+                                    <label for="female">Female</label>
+                                </div>
+                            </div>
+                            -->
+
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+ <script src="{%static 'register/'%}vendor/jquery/jquery.min.js"></script>
+    <script src="{%static 'register/'%}vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{%static 'register/'%}vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="{%static 'register/'%}vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="{%static 'register/'%}js/main.js"></script>
+
+{% endblock %}
+
+
