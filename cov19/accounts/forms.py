@@ -68,6 +68,7 @@ class UpdateUser(forms.ModelForm):
         model = UserAccount
         fields = ('profile_image',)
 
+
     def save(self, commit=True):
         account = super(UpdateUser, self).save(commit=False)
         account.profile_image = self.cleaned_data['profile_image']

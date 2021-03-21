@@ -165,6 +165,7 @@ iframe {
   border-radius: 10px;
   overflow: hidden;
   padding: 42px 55px 45px 55px;
+  margin:45px ;
 }
 
 
@@ -349,6 +350,7 @@ textarea.input100 {
 @media (max-width: 576px) {
   .wrap-contact100 {
     padding: 72px 15px 65px 15px;
+
   }
 }
 

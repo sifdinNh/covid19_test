@@ -29,6 +29,7 @@
 {% include "core/navbar.html" %}
 	<div class="container-contact100">
 		<div class="wrap-contact100">
+			{% if request.user.citoyen.is_RDV != True  %}
 			<form class="contact100-form validate-form" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<span class="contact100-form-title">
@@ -64,7 +65,7 @@
 				</div>
 				<div class="wrap-input100">
 					{% render_field form.is_cov19 class=" " id="checkdo" %}
-					<label for="checkdo" class="block text-gray-400 font-normal">Do u have/had Covid-19</label>
+					<label for="checkdo" class="block text-gray-400 font-normal d-inline">Do u have/had Covid-19</label>
 				</div>
 				<div class="mb-2"> <span>Drope your image</span>
 					<div class="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor">
@@ -90,6 +91,9 @@
 					</div>
 				</div>
 			</form>
+			{%else%}
+			Waiating for appromvement
+			{% endif %}
 		</div>
 	</div>
 

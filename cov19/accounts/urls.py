@@ -9,6 +9,11 @@ urlpatterns = [
     path('register/',views.register,name="Register"),
     path('logout/',views.logout_view,name="Logout"),
     path('RDV/',views.Rdv,name="Rdv"),
+    path('Rdv_management/',views.Rdv_management,name="Rdv_management"),
+    path('Rdv_management/delete/<int:id>', views.delete),
+    path('Rdv_management/accept/<int:id>', views.accept),
+    path('profile/<int:id>',views.profile),
+
 
 ]
 

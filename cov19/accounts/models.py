@@ -82,7 +82,11 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         return self.first_name + " " + self.last_name
     def is_Citoyen(self):
-        if type==UserAccount.Types.CIT:
+        if self.type == UserAccount.Types.CIT:
+            return True
+        return False
+    def is_Administrateur(self):
+        if self.type == UserAccount.Types.C_ADMIN:
             return True
         return False
 
@@ -108,6 +112,7 @@ class Citoyen(models.Model):
     date_N=models.DateField()
     address=models.CharField(max_length=60)
     phone = PhoneNumberField(null=True,blank=True)
+    is_RDV = models.BooleanField(default=False)
     def get_name(self):
         return self.user.first_name + " " + self.user.last_name
 
@@ -125,6 +130,8 @@ class RDV(models.Model):
     center_id   = models.IntegerField(default=0,blank=True,null=True)
     def __str__(self):
         return self.citoyen.CID
+
+
 
 
 

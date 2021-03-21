@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegisteruserForm, RegisterCitoyen, RDV_Register
 from django.contrib.auth.models import Group
+from django.core.exceptions import ValidationError
+from .models import *
 
 from .forms import  *
 # Create your views here.
@@ -40,19 +42,44 @@ def Rdv(request):
         form2 = UpdateUser(request.POST, request.FILES, instance=request.user)
         print("form.errors")
         if form.is_valid() and form2.is_valid():
-
             Rdv = form.save(commit=False)
             Rdv.citoyen = request.user.citoyen
+            Rdv.center_id = form.cleaned_data['choice_field']
+            request.user.citoyen.cov_19 = form.cleaned_data['is_cov19']
+            request.user.citoyen.RAMID = form.cleaned_data['ramid']
+            print(Rdv.center_id)
+            request.user.citoyen.is_RDV = True
+            request.user.citoyen.save()
+            form.save()
             form2.save()
-            print("image")
-           ## Rdv.citoyen.cov_19 = Rdv.is_cov19
-           ## Rdv.center_id = Rdv.choice_field
-           ## Rdv.save()
+            print(form.errors)
+
 
     else:
         form=RDV_Register()
         form2=UpdateUser()
     return render(request, 'Reg/RDV.html', context={'form':form,'formImage':form2})
+def Rdv_management(request):
+    Rdv=RDV.objects.filter(is_confirmed=False,is_rejected=False)
+    return render(request, 'administrateur/test.html', context={'Rdv':Rdv})
+def profile(request, id):
+    citoyen = Citoyen.objects.get(pk=id)
+    Rdv = RDV.objects.get(citoyen=citoyen)
+    return render(request, 'administrateur/profile.html', context={'Rdv': Rdv,'citoyen':citoyen})
+
+def delete(request, id):
+    citoyen=Citoyen.objects.get(pk=id)
+    Rdv=RDV.objects.get(citoyen=citoyen)
+    Rdv.is_rejected=True
+    Rdv.save();
+    return redirect('Rdv_management')
+def accept(request, id):
+    citoyen=Citoyen.objects.get(pk=id)
+    Rdv=RDV.objects.get(citoyen=citoyen)
+    Rdv.is_confirmed=True
+    Rdv.save();
+    return redirect('Rdv_management')
+
 
 def logout_view(request):
     logout(request)
