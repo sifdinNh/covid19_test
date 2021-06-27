@@ -203,8 +203,9 @@ body {
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="{{request.user.imageURL}}" class="avatar" alt="Avatar">
 						{{request.user.first_name}} {{request.user.last_name}} <b class="caret"></b></a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                     {% if request.user.is_authenticated  and request.user.is_Citoyen %}   <a href="/user/profile/{{request.user.citoyen.pk}}" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
+						{%endif%}
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                         <div class="divider dropdown-divider"></div>
                         <a href="{%url 'Logout'%}" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>

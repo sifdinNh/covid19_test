@@ -106,7 +106,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 class Citoyen(models.Model):
     user=models.OneToOneField(UserAccount,on_delete=models.CASCADE)
     CID=models.CharField(max_length=8,unique=True)
-    RAMID=models.CharField(max_length=10, unique=True, default=0000000,blank=True, null=True)
+    RAMID=models.CharField(max_length=10, default=0000000,blank=True, null=True)
 
     cov_19=models.BooleanField(default=False)
     date_N=models.DateField()

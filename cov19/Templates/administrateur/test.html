@@ -325,19 +325,19 @@ $(document).ready(function(){
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th></th>
+                        <th>name</th>
 						<th>adresse</th>
 						<th>RDV Date</th>
                         <th>covid-19</th>
 
-						<th>approve</th>
+						<th>accept</th>
 						<th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for i in Rdv%}
                     <tr>
-                        <td>1</td>
+                        <td>{{i.citoyen.pk}}</td>
                         <td><a href="/user/profile/{{i.citoyen.pk}}"><img src="{{i.citoyen.user.imageURL}}" class="avatar roundedImage" alt="Avatar"> {{i.citoyen.user.get_full_name}}</a></td>
 						<td>{{i.citoyen.address}}</td>
                         <td>{{i.date_RDV}}</td>

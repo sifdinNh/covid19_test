@@ -39,7 +39,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Covid vaccine</h2>
                 <p class="animate__animated animate__fadeInUp">Morocco acquires first batch of vaccine against Covid-19 virus</p>
-                <div> {% if request.user.citoyen.is_Citoyen == True %} <a href="{%url 'Rdv'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Rendez_vous</a>{% elif request.user.is_Administrateur == True %} <a href="{%url 'Rdv'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Rdv management</a> {% else %} <a href="{%url 'Register'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Sign up</a> {% endif %} </div>
+                <div> {% if request.user.is_authenticated  and request.user.is_Citoyen %} <a href="{%url 'Rdv'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">appoitement</a>{% elif request.user.is_Administrateur == True %} <a href="{%url 'Rdv_management'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Rdv management</a> {% else %} <a href="{%url 'Register'%}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Sign up</a> {% endif %} </div>
               </div>
             </div>
           </div>

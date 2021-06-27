@@ -60,12 +60,14 @@ def Rdv(request):
         form2=UpdateUser()
     return render(request, 'Reg/RDV.html', context={'form':form,'formImage':form2})
 def Rdv_management(request):
-    Rdv=RDV.objects.filter(is_confirmed=False,is_rejected=False)
+    C_id=request.user.administrateur.centre.pk
+    Rdv=RDV.objects.filter(is_confirmed=False,is_rejected=False, center_id=C_id)
     return render(request, 'administrateur/test.html', context={'Rdv':Rdv})
 def profile(request, id):
     citoyen = Citoyen.objects.get(pk=id)
     Rdv = RDV.objects.get(citoyen=citoyen)
-    return render(request, 'administrateur/profile.html', context={'Rdv': Rdv,'citoyen':citoyen})
+    centre = Centre.objects.get(pk=Rdv.center_id)
+    return render(request, 'administrateur/profile.html', context={'Rdv': Rdv,'citoyen':citoyen,'centre':centre})
 
 def delete(request, id):
     citoyen=Citoyen.objects.get(pk=id)

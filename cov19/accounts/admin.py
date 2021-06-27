@@ -52,6 +52,7 @@ class RDVAdmin(admin.ModelAdmin):
 admin.site.register(UserAccount, AccountAdmin)
 admin.site.register(Citoyen)
 admin.site.register(Centre)
+admin.site.register(Administrateur)
 admin.site.register(RDV, RDVAdmin)
 
 

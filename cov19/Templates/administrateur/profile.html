@@ -27,6 +27,7 @@
 }
 .profile-img{
     text-align: center;
+    position: absolute;
 }
 .profile-img img{
     width: 70%;
@@ -158,6 +159,22 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <label>CID</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{citoyen.user.citoyen.CID}}</p>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Ramid</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{citoyen.user.citoyen.RAMID}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label>Name</label>
                                         </div>
                                         <div class="col-md-6">
@@ -188,6 +205,15 @@
                                             <p>{{citoyen.user.citoyen.address}}</p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Centre</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{centre.name}}</p>
+                                        </div>
+                                    </div>
+
                         </div>
                         
                     </div>
